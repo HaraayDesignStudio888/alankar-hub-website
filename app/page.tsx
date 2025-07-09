@@ -122,7 +122,7 @@ export default function HomePage() {
             <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 border border-red-500 border-2">
               <div className="relative h-48">
                 <Image
-                  src="/Digital Printing.webp"
+                  src="/DigitalPrinting.webp"
                   alt="Digital Printing"
                   fill
                   className="object-cover"
