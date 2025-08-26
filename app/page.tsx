@@ -1,49 +1,142 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Star } from "lucide-react";
+import { Phone, Mail, Star } from "lucide-react";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
+  // ✅ Carousel Images
+  const popularWorks = [
+    {
+      image: "/Letter Head Print.png",
+      category: "Post Prints",
+    },
+    {
+      image: "/A3 Sticker Print.png",
+      category: "Post Prints",
+    },
+    {
+      image: "/Canvas Print.png",
+      category: "Post Prints",
+    },
+    {
+      image: "/5 Piece Canvas Wallpaper Art.png",
+      category: "Post Prints",
+    },
+    {
+      image: "/Canvas Floater Frame.png",
+      category: "Photo Frames",
+    },
+    {
+      image: "/Wall Photo Frames.png",
+      category: "Photo Frames",
+    },
+    {
+      image: "/Event ID Cards.png",
+      category: "Vinyl Prints",
+    },
+    {
+      image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
+      category: "Vinyl Prints",
+    },
+    {
+      image: "/Service Images/Vinyl Prints/ID Cards Accessories.png",
+      category: "Vinyl Prints",
+    },
+  ];
+
+  // ✅ Keen slider config
+  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: { perView: 3, spacing: 15 },
+    breakpoints: {
+      "(max-width: 768px)": {
+        slides: { perView: 1 },
+      },
+    },
+  });
+
+  // ✅ Auto-slide with pause on hover
+  const timer = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!slider) return;
+
+    const startAutoPlay = () => {
+      stopAutoPlay();
+      timer.current = setInterval(() => {
+        slider.current?.next();
+      }, 1500); // 4s delay
+    };
+
+    const stopAutoPlay = () => {
+      if (timer.current) clearInterval(timer.current);
+    };
+
+    startAutoPlay();
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("mouseenter", stopAutoPlay);
+      container.addEventListener("mouseleave", startAutoPlay);
+    }
+
+    return () => {
+      stopAutoPlay();
+      if (container) {
+        // container.removeEventListener("mouseenter", stopAutoPlay);
+        // container.removeEventListener("mouseleave", startAutoPlay);
+      }
+    };
+  }, [slider]);
+
+  // ✅ Services Items
   const portfolioItems = [
     {
       id: 1,
-      title: "Vinyl Prints",
-      description: "",
-      image: "/Event ID Cards.png",
-      category: "Vinyl",
+      title: "Wallpaper",
+      description: "5 Piece Canvas Wallpaper that transforms spaces.",
+      image: "/5 Piece Canvas Wallpaper Art.png",
+      category: "Post Prints",
     },
-
     {
       id: 2,
-      title: "Wallpaper",
-      description: "5 Piece Canvas Wallpaper",
-      image: "/5 Piece Canvas Wallpap....png",
-      category: "Wallpaper",
+      title: "Table Top Photo Frame",
+      description: "Elegant table top photo frame",
+      image: "/Table Top Photo Frame.png",
+      category: "Photo Frames",
     },
     {
       id: 3,
       title: "Photo Frame",
-      description: "Eye-catching marketing materials for your business",
-      image: "/Photo Frame.png",
+      description: "Stylish wall photo frames for memories.",
+      image: "/Wall Photo Frames.png",
       category: "Photo Frame",
     },
     {
       id: 4,
-      title: "Letter Head Print",
-      description: "",
-      image: "/Letter Head Print.png",
-      category: "Digital print",
+      title: "Canvas Floater Frame",
+      description: "Professional canvas floater frame",
+      image: "/Canvas Floater Frame.png",
+      category: "Photo Frames",
     },
     {
       id: 5,
-      title: "Packaging Design Print",
-      description: "Custom packaging solutions for products",
-      image: "/packaging-design.webp",
-      category: "Packaging",
+      title: "Vinyl Prints",
+      description: "Durable and high-quality vinyl printing solutions.",
+      image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
+      category: "Vinyl",
     },
   ];
 
+  // ✅ Testimonials
   const testimonials = [
     {
       name: "Rajesh Kumar",
@@ -70,41 +163,174 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Welcome to ALANKAR DIGITAL HUB
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Your Premier Printing Partner for All Digital Solutions
+      {/* 🖼 Hero Section */}
+
+      <section className="relative w-full overflow-hidden">
+        {/* 🔥 Common Overlay Text */}
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 -translate-y-16">
+          {/* Welcome Text */}
+          <h3 className="text-3xl md:text-5xl font text-white drop-shadow-lg mb-2">
+            Welcome to
+          </h3>
+
+          {/* Vibrant Business Name */}
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold drop-shadow-lg mb-2"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {"ALANKAR_DIGITAL_HUB".split("").map((char, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                animate={{
+                  color: [
+                    "#ffffff",
+                    "#f8f4f4ff",
+                    "#fafcfaff",
+                    "#f6f8faff",
+                    "#ffffff",
+                  ], // white → red → green → blue → white
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  repeatDelay: 5,
+                }}
+                className="inline-block"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.h2>
+
+          {/* Subtitle */}
+          <h2 className="text-2xl md:text-4xl font text-white drop-shadow-lg mb-3">
+            Print Your Memories
+          </h2>
+
+          {/* Short Tagline */}
+          <p className="text-lg md:text-xl text-gray-200 drop-shadow-lg mb-1">
+            High-quality prints, frames & vinyls — all in one place
           </p>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
+
+          {/* Long Description */}
+          <p className="text-base md:text-lg text-gray-300 drop-shadow-md max-w-3xl">
             From business cards to large format banners, we deliver exceptional
             quality printing services with cutting-edge technology and creative
             expertise.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100"
-              >
-                Get Quote Now
-              </Button>
-            </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
-            >
-              View Our Work
-            </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {/* Banner 1 */}
+          <div className="relative h-[400px] md:h-[500px]">
+            <Image
+              src="/4x6 Photo Print.png"
+              alt="Post Prints"
+              fill
+              className="object-cover rounded-xl"
+            />
+            {/* Button Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+              <Link href={`/services?category=Post Prints`}>
+                <Button className="bg-white text-black hover:bg-gray-200">
+                  View All
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Banner 2 */}
+          <div className="relative h-[400px] md:h-[500px]">
+            <Image
+              src="/Wall Photo Frames.png"
+              alt="Photo Frames"
+              fill
+              className="object-cover rounded-xl"
+            />
+            {/* Button Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+              <Link href={`/services?category=Photo Frames`}>
+                <Button className="bg-white text-black hover:bg-gray-200">
+                  View All
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Banner 3 */}
+          <div className="relative h-[400px] md:h-[500px]">
+            <Image
+              src="/Event ID Cards.png"
+              alt="Vinyl Prints"
+              fill
+              className="object-cover rounded-xl"
+            />
+            {/* Button Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+              <Link href={`/services?category=Vinyl Prints`}>
+                <Button className="bg-white text-black hover:bg-gray-200">
+                  View All
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* ⭐ Popular Work Carousel */}
+
+      <section className="py-16 bg-white" ref={containerRef}>
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Most Popular Work
+          </h2>
+
+          <div ref={sliderRef} className="keen-slider">
+            {popularWorks.map((work, index) => (
+              <div
+                key={index}
+                className="keen-slider__slide flex justify-center"
+              >
+                <div className="relative w-full max-w-sm rounded-xl overflow-hidden  hover:shadow-xl transition">
+                  {/* Image */}
+                  <Image
+                    src={work.image}
+                    alt={work.category}
+                    width={400}
+                    height={300}
+                    className="object-cover w-full h-64 rounded-full shadow-md"
+                  />
+
+                  {/* Overlay Button */}
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                    <Link
+                      href={`/services?category=${encodeURIComponent(
+                        work.category
+                      )}`}
+                    >
+                      <Button className="bg-white text-black hover:bg-gray-200">
+                        View All
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 🛠 Services */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -118,28 +344,28 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* digital long page */}
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 border border-red-500 border-2">
+            {/* A3 Sticker Print */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 border border-red-500">
               <div className="relative h-48">
                 <Image
-                  src="/DigitalPrinting.webp"
-                  alt="Digital Printing"
+                  src="/A3 Sticker Print.png"
+                  alt="/A3 Sticker Print.png"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
-                  Digital Printing
+                  Post Prints
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Digital Format Printing
-                </h3>
+                <h3 className="text-xl font-semibold mb-2">Post Prints</h3>
                 <p className="text-gray-600">
-                  High-quality prints for banners, hoardings, and more.
+                  High-quality prints for Sticker and more.
                 </p>
               </CardContent>
             </Card>
+
+            {/* Portfolio Items */}
             {portfolioItems.map((item) => (
               <Card
                 key={item.id}
@@ -162,37 +388,48 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             ))}
-            {/* Wide format printing card spanning 2 columns */}
-            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 border border-pink-500 border-2">
+
+            {/* Wide Format Printing */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow md:col-span-2 border border-red-500">
               <div className="relative h-48">
                 <Image
-                  src="/wfp.jpg"
-                  alt="wide format printing"
+                  src="/Event ID Cards.png"
+                  alt="Event ID Cards"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
-                  wide format
+                  Vinyl
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Wide Format Printing
-                </h3>
+                <h3 className="text-xl font-semibold mb-2">Vinyl</h3>
                 <p className="text-gray-600">
-                  High-quality prints for banners, hoardings, and more.
+                  High-quality prints for ID Cards and more.
                 </p>
               </CardContent>
             </Card>
           </div>
+
+          {/* CTA */}
+          <div className="text-center mt-8">
+            <Link href="/services">
+              <Button
+                size="lg"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Explore All Services
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* 💡 Why Choose Us */}
       <section className="py-16">
         <div className="container mx-auto px-3">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4">
               Why Choose ALANKAR DIGITAL HUB?
             </h2>
           </div>
@@ -218,8 +455,6 @@ export default function HomePage() {
               </p>
             </div>
 
-           
-
             <div className="text-center">
               <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-8 h-8 text-orange-600" />
@@ -233,7 +468,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* 🗣 Testimonials */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -268,7 +503,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* 📞 CTA Section */}
       <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
