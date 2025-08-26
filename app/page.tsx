@@ -12,40 +12,49 @@ import { motion } from "framer-motion";
 
 export default function HomePage() {
   // ✅ Carousel Images
-  const popularWorks = [
+const popularWorks = [
     {
+      title: "Letter Head Print",
       image: "/Letter Head Print.png",
       category: "Post Prints",
     },
     {
+      title: "A3 Sticker Print",
       image: "/A3 Sticker Print.png",
       category: "Post Prints",
     },
     {
+      title: "Canvas Print",
       image: "/Canvas Print.png",
       category: "Post Prints",
     },
     {
+      title: "5 Piece Canvas Wallpaper Art",
       image: "/5 Piece Canvas Wallpaper Art.png",
       category: "Post Prints",
     },
     {
+      title: "Canvas Floater Frame",
       image: "/Canvas Floater Frame.png",
       category: "Photo Frames",
     },
     {
+      title: "Wall Photo Frames",
       image: "/Wall Photo Frames.png",
       category: "Photo Frames",
     },
     {
+      title: "Event ID Cards",
       image: "/Event ID Cards.png",
       category: "Vinyl Prints",
     },
     {
+      title: "ID Cards Lanyards",
       image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
       category: "Vinyl Prints",
     },
     {
+      title: "ID Cards Accessories",
       image: "/Service Images/Vinyl Prints/ID Cards Accessories.png",
       category: "Vinyl Prints",
     },
@@ -289,30 +298,29 @@ export default function HomePage() {
 
       {/* ⭐ Popular Work Carousel */}
 
-      <section className="py-16 bg-white" ref={containerRef}>
+       <section className="py-16 bg-white" ref={containerRef}>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Most Popular Work
           </h2>
-
           <div ref={sliderRef} className="keen-slider">
             {popularWorks.map((work, index) => (
               <div
                 key={index}
                 className="keen-slider__slide flex justify-center"
               >
-                <div className="relative w-full max-w-sm rounded-xl overflow-hidden  hover:shadow-xl transition">
-                  {/* Image */}
+                <div className="relative w-full max-w-sm rounded-xl overflow-hidden  transition">
                   <Image
                     src={work.image}
-                    alt={work.category}
+                    alt={work.title}
                     width={400}
                     height={300}
-                    className="object-cover w-full h-64 rounded-full shadow-md"
+                    className="object-cover w-full h-64 rounded-full shadow-lg"
                   />
-
-                  {/* Overlay Button */}
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                  <div className="absolute inset-0 text-white font-extrabold text-2xl md:text-1xl  bg-white bg-opacity-0 flex items-center justify-center opacity-100 hover:opacity-100 transition">
+                    {work.title}
+                  </div>
+                  <div className="absolute inset-0   flex items-end justify-center opacity-100  transition mb-4">
                     <Link
                       href={`/services?category=${encodeURIComponent(
                         work.category
