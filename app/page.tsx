@@ -9,10 +9,11 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { servicesData, categories } from "./services/servicesData.js"
 
 export default function HomePage() {
   // ✅ Carousel Images
-const popularWorks = [
+  const popularWorks = [
     {
       title: "Letter Head Print",
       image: "/Letter Head Print.png",
@@ -173,12 +174,19 @@ const popularWorks = [
   return (
     <div className="min-h-screen">
       {/* 🖼 Hero Section */}
+      <section className="relative w-auto bg-gradient-to-r from-blue-100 to-blue-200 rounded-2xl shadow-md m-[20px] mt-[1 0px] mb-[30px] p-12 text-center">
+        {/* Abstract background shapes */}
+        
+          
+         <img src="./LVector.png" className="lVector"></img>
+         <img src="./RVector.png" className="rVector"></img>
+        
 
-      <section className="relative w-full overflow-hidden">
-        {/* 🔥 Common Overlay Text */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 -translate-y-16">
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-3xl mx-auto">
+         
           {/* Welcome Text */}
-          <h3 className="text-3xl md:text-5xl font text-white drop-shadow-lg mb-2">
+          <h3 className="text-3xl md:text-5xl font text-black drop-shadow-lg mb-2">
             Welcome to
           </h3>
 
@@ -201,11 +209,11 @@ const popularWorks = [
                 }}
                 animate={{
                   color: [
-                    "#ffffff",
-                    "#f8f4f4ff",
-                    "#fafcfaff",
-                    "#f6f8faff",
-                    "#ffffff",
+                    "#121212ff",
+                    "#121212ff",
+                    "#121212ff",
+                    "#121212ff",
+                    "#121212ff",
                   ], // white → red → green → blue → white
                 }}
                 transition={{
@@ -222,24 +230,31 @@ const popularWorks = [
           </motion.h2>
 
           {/* Subtitle */}
-          <h2 className="text-2xl md:text-4xl font text-white drop-shadow-lg mb-3">
+          <h2 className="text-2xl md:text-4xl font text-black drop-shadow-lg mb-3">
             Print Your Memories
           </h2>
 
           {/* Short Tagline */}
-          <p className="text-lg md:text-xl text-gray-200 drop-shadow-lg mb-1">
+          <p className="text-lg md:text-xl text-black-200 drop-shadow-lg mb-1">
             High-quality prints, frames & vinyls — all in one place
           </p>
 
           {/* Long Description */}
-          <p className="text-base md:text-lg text-gray-300 drop-shadow-md max-w-3xl">
+          <p className="text-base md:text-lg text-black-300 drop-shadow-md max-w-3xl">
             From business cards to large format banners, we deliver exceptional
             quality printing services with cutting-edge technology and creative
             expertise.
           </p>
+       
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3">
+      <section className="relative w-auto m-[20px] overflow-hidden">
+        {/* 🔥 Common Overlay Text */}
+        
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[5px]">
+
           {/* Banner 1 */}
           <div className="relative h-[400px] md:h-[500px]">
             <Image
@@ -249,7 +264,7 @@ const popularWorks = [
               className="object-cover rounded-xl"
             />
             {/* Button Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+            <div className="absolute inset-0 bg-black bg-opacity-0 flex border-[3px] border-black-400 items-end justify-center pb-10 ">
               <Link href={`/services?category=Post Prints`}>
                 <Button className="bg-white text-black hover:bg-gray-200">
                   View All
@@ -267,7 +282,7 @@ const popularWorks = [
               className="object-cover rounded-xl"
             />
             {/* Button Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+            <div className="absolute inset-0 bg-black bg-opacity-0 flex border-[3px] border-black-400 items-end justify-center pb-10">
               <Link href={`/services?category=Photo Frames`}>
                 <Button className="bg-white text-black hover:bg-gray-200">
                   View All
@@ -285,7 +300,7 @@ const popularWorks = [
               className="object-cover rounded-xl"
             />
             {/* Button Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end justify-center pb-10">
+            <div className="absolute inset-0 bg-black bg-opacity-0 border-[3px] border-black-400 flex items-end justify-center pb-10">
               <Link href={`/services?category=Vinyl Prints`}>
                 <Button className="bg-white text-black hover:bg-gray-200">
                   View All
@@ -298,7 +313,7 @@ const popularWorks = [
 
       {/* ⭐ Popular Work Carousel */}
 
-       <section className="py-16 bg-white" ref={containerRef}>
+      <section className="py-16 bg-white" ref={containerRef}>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Most Popular Work

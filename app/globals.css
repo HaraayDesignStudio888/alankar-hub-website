@@ -102,4 +102,20 @@ body {
 .animate-gradient {
   animation: gradient 5s ease infinite;
 }
+.vectorDiv{
+  width: 100%;
+  position: relative;
+
+}
+.lVector{
+position: absolute;
+left: 0;
+bottom: 0;
+}
+.rVector{
+
+  position: absolute;
+right: 0;
+top: 0;
+}
 
