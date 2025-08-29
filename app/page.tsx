@@ -9,7 +9,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { servicesData, categories } from "./services/servicesData.js"
+import { servicesData, categories } from "./services/servicesData.js";
 
 export default function HomePage() {
   // ✅ Carousel Images
@@ -176,15 +176,12 @@ export default function HomePage() {
       {/* 🖼 Hero Section */}
       <section className="relative w-auto bg-gradient-to-r from-blue-100 to-blue-200 rounded-2xl shadow-md m-[20px] mt-[1 0px] mb-[30px] p-12 text-center">
         {/* Abstract background shapes */}
-        
-          
-         <img src="./LVector.png" className="lVector"></img>
-         <img src="./RVector.png" className="rVector"></img>
-        
+
+        <img src="./LVector.png" className="lVector"></img>
+        <img src="./RVector.png" className="rVector"></img>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-3xl mx-auto">
-         
           {/* Welcome Text */}
           <h3 className="text-3xl md:text-5xl font text-black drop-shadow-lg mb-2">
             Welcome to
@@ -245,16 +242,13 @@ export default function HomePage() {
             quality printing services with cutting-edge technology and creative
             expertise.
           </p>
-       
         </div>
       </section>
 
       <section className="relative w-auto m-[20px] overflow-hidden">
         {/* 🔥 Common Overlay Text */}
-        
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[5px]">
-
           {/* Banner 1 */}
           <div className="relative h-[400px] md:h-[500px]">
             <Image
@@ -313,7 +307,7 @@ export default function HomePage() {
 
       {/* ⭐ Popular Work Carousel */}
 
-      <section className="py-16 bg-white" ref={containerRef}>
+      <section className="py-8 bg-white " ref={containerRef}>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Most Popular Work
@@ -332,9 +326,14 @@ export default function HomePage() {
                     height={300}
                     className="object-cover w-full h-64 rounded-full shadow-lg"
                   />
-                  <div className="absolute inset-0 text-white font-extrabold text-2xl md:text-1xl  bg-white bg-opacity-0 flex items-center justify-center opacity-100 hover:opacity-100 transition">
+                  <div
+                    className="absolute inset-0 text-white font-extrabold text-2xl md:text-xl 
+                bg-white bg-opacity-0 flex items-center justify-center 
+                opacity-100 hover:opacity-100 transition drop-shadow-[2px_2px_2px_black]"
+                  >
                     {work.title}
                   </div>
+
                   <div className="absolute inset-0   flex items-end justify-center opacity-100  transition mb-4">
                     <Link
                       href={`/services?category=${encodeURIComponent(
@@ -354,7 +353,7 @@ export default function HomePage() {
       </section>
 
       {/* 🛠 Services */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -527,7 +526,7 @@ export default function HomePage() {
       </section>
 
       {/* 📞 CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-100 to-blue-200 text-black ">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Your Project?
