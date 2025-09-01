@@ -36,7 +36,7 @@ export default function HomePage() {
     },
     {
       title: "Canvas Floater Frame",
-      image: "/Canvas Floater Frame.png",
+      image: "/Canvasfloaterframe.png",
       category: "Photo Frames",
     },
     {
@@ -134,7 +134,7 @@ export default function HomePage() {
       id: 4,
       title: "Canvas Floater Frame",
       description: "Professional canvas floater frame",
-      image: "/Canvas Floater Frame.png",
+      image: "/Canvasfloaterframe.png",
       category: "Photo Frames",
     },
     {

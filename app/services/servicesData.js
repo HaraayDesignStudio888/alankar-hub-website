@@ -90,7 +90,7 @@ export const servicesData = [
     id: 13,
     title: "Canvas Floater Frame",
     description: "Professional canvas floater frame",
-    image: "/Canvas Floater Frame.png",
+    image: "/Canvasfloaterframe.png",
     category: "Photo Frames",
   },
   {
