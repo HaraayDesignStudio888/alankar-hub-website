@@ -51,7 +51,7 @@ export default function HomePage() {
     },
     {
       title: "ID Cards Lanyards",
-      image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
+      image: "/Service Images/Vinyl Prints/IDCardslinyards.png",
       category: "Vinyl Prints",
     },
     {
@@ -141,7 +141,7 @@ export default function HomePage() {
       id: 5,
       title: "Vinyl Prints",
       description: "Durable and high-quality vinyl printing solutions.",
-      image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
+      image: "/Service Images/Vinyl Prints/IDCardslinyards.png",
       category: "Vinyl",
     },
   ];

@@ -67,7 +67,7 @@ export const servicesData = [
     id: 10,
     title: "Coffee Mug Print",
     description: "Custom printed coffee mugs",
-    image: "/Coffee Mug Print.png",
+    image: "/CoffeeMugPrint.png",
     category: "Post Prints",
   },
   {
@@ -157,7 +157,7 @@ export const servicesData = [
     id: 22,
     title: "ID Cards Lanyards",
     description: "Professional ID card lanyards",
-    image: "/Service Images/Vinyl Prints/ID Cards linyards.png",
+    image: "/Service Images/Vinyl Prints/IDCardslinyards.png",
     category: "Vinyl Prints",
   },
   {
@@ -172,7 +172,7 @@ export const servicesData = [
     id: 24,
     title: "Sun Board Prints",
     description: "Large format sun board printing",
-    image: "/Service Images/Vinyl Prints/Sun Board Prints.png",
+    image: "/Service Images/Vinyl Prints/SunBoardPrints.png",
     category: "Vinyl Prints",
   },
   {
